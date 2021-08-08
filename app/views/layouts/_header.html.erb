@@ -1,0 +1,23 @@
+<header class="mb-5">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <%= link_to 'Zombie Apocalypse', root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-5">
+                    <%= link_to 'Home', root_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <% if logged_in? %>
+                    <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link" %>
+                    <% else %>
+                    <%= link_to 'Login', login_path, class: "nav-link" %>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+</header>

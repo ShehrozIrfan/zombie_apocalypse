@@ -1,0 +1,13 @@
+<% if @survival.errors.any? %>
+    <div id="error_explanation">
+        <div class="alert alert-danger">
+        The form contains <%= pluralize(@survival.errors.count,
+        "error") %>.
+        </div>
+        <ul>
+            <% @survival.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
