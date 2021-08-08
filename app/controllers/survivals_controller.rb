@@ -10,7 +10,11 @@ class SurvivalsController < ApplicationController
     end
   end
   def new
-    @survival = Survival.new
+    if !logged_in?
+      @survival = Survival.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
