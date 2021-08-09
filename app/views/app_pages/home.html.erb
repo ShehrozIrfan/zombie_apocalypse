@@ -9,6 +9,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-md-offset-3 jumbotron">
                 <div>
+                    <% if logged_in? %>
+                        <h3>Hi <%= current_user.name %>
+                    <% end %>
                     <h4>Welcome to Zombie Apocalypse</h4>
                     <p>Its the Zombie Apocalypse Survival App</p>
                     <div>

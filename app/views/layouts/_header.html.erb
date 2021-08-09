@@ -1,6 +1,6 @@
 <header class="mb-5">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-        <%= link_to 'Zombie Apocalypse', root_path, class: "navbar-brand" %>
+        <%= link_to 'Zombie Apocalypse', root_path, class: "navbar-brand navbar-brand-heading" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,7 +11,15 @@
                 </li>
                 <li class="nav-item">
                     <% if logged_in? %>
-                    <%= link_to 'Logout', logout_path, method: :delete, class: "nav-link" %>
+                    <li class="nav-item dropdown pr-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            <%= current_user.name %>
+                        </a>
+                    <div class="dropdown-menu">
+                        <%= link_to 'My Profile', survival_path(current_user.id), class: 'dropdown-item' %>
+                        <%= link_to 'Logout', logout_path, method: :delete, class: "dropdown-item" %>
+                    </div>
+                </li>
                     <% else %>
                     <%= link_to 'Login', login_path, class: "nav-link" %>
                     <% end %>

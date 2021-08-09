@@ -30,6 +30,6 @@ class SurvivalsController < ApplicationController
   end
 
   def survival_params
-    params.require(:survival).permit(:name,:email,:age,:gender,:password,:password_confirmation)
+    params.require(:survival).permit(:avatar,:name,:email,:age,:gender,:password,:password_confirmation)
   end
 end

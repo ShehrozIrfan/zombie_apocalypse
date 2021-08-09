@@ -1,1 +1,54 @@
-<%= @survival %>
+<% provide(:title, "My Profile") %>
+<!Doctype html>
+<html>
+    <head><title><%= yield(:title) %></title></head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-sm-12 col-xs-12 table-responsive col-md-offset-3">
+                    <h2 class="text-center">My Profile</h2>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td class="table-dark">Profile Picture</td>
+                            <td>
+                                <% if @survival.avatar.attached? %>
+                                    <div><image src="<%= (url_for(@survival.avatar)) %>" class="survival-avatar"></div>
+                                <% else %>
+                                    <p>No image found</p>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Name</td>
+                            <td><%= current_user.name %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Age</td>
+                            <td><%= current_user.age %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Gender</td>
+                            <td><%= current_user.gender %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Infected?</td>
+                            <td><%= current_user.isInfected ? 'You are infected' : 'You are not infected' %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Marked Infected</td>
+                            <td>
+                                <% if current_user.isInfectedCount %>
+                                You are marked infected by <%= current_user.isInfectedCount %> survivals
+                                <% else %>
+                                You are not marked infected by any survival
+                                <% end %>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
