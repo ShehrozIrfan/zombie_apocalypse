@@ -29,7 +29,29 @@ class SurvivalsController < ApplicationController
     end
   end
 
+  def edit
+    @survival = Survival.find(params[:id])
+  end
+
+  def update
+    @survival = Survival.find(params[:id])
+
+    if @survival.update(update_params)
+      flash[:success] = "Profile Updated"
+      redirect_to @survival
+    else
+      render 'edit'
+    end
+  end
+
+  def index
+    @survivals = Survival.all
+  end
   def survival_params
     params.require(:survival).permit(:avatar,:name,:email,:age,:gender,:password,:password_confirmation)
+  end
+
+  def update_params
+      params.require(:survival).permit(:avatar)
   end
 end

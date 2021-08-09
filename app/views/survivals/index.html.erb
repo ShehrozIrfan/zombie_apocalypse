@@ -1,0 +1,45 @@
+<% provide(:title, "All Survivals") %>
+<!Doctype html>
+<html>
+    <head><title><%= yield(:title) %></title></head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-sm-12 col-xs-12 table-responsive col-md-offset-3">
+                    <h2 class="text-center">All Survivals</h2>
+                    <% @survivals.each do |survival| %>
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td class="table-dark">Profile Picture</td>
+                            <td>
+                                <% if survival.avatar.attached? %>
+                                    <div><image src="<%= (url_for(survival.avatar)) %>" class="survival-avatar"></div>
+                                <% else %>
+                                    <p>No image found</p>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Name</td>
+                            <td><%= survival.name %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Age</td>
+                            <td><%= survival.age %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Gender</td>
+                            <td><%= survival.gender %></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button class="btn btn-warning btn-sm" id="btn_contaminated">Report Contamination</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
