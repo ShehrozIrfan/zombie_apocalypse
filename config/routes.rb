@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/survivals/mark_infected', to: 'survivals#mark_infected'
+  get '/report', to: 'survivals#report'
 
   resources :survivals
   resources :items

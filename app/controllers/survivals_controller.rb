@@ -64,6 +64,26 @@ class SurvivalsController < ApplicationController
     render json: {data: @success}
   end
 
+  def report
+    @survivors = Survival.all
+
+    @infected_count = 0
+    @non_infected_count = 0
+    @infected_percentage
+    @non_infected_percentage
+
+    @survivors.each do |s|
+      if s.isInfectedCount && s.isInfectedCount >=5
+        @infected_count = @infected_count + 1
+      else
+        @non_infected_count = @non_infected_count + 1
+      end
+    end
+  end
+
+
+
+
   def survival_params
     params.require(:survival).permit(:avatar,:name,:email,:age,:gender,:password,:password_confirmation)
   end

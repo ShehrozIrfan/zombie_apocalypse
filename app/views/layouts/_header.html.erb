@@ -11,14 +11,17 @@
                 </li>
                 <li class="nav-item">
                     <% if logged_in? %>
-                    <%= link_to 'Survivals', survivals_path, class: "nav-link pr-5" %>
+                    <li><%= link_to 'Report', report_path, class: "nav-link pr-5" %></li>
+                    <li><%= link_to 'Survivals', survivals_path, class: "nav-link pr-5" %></li>
                     <li class="nav-item dropdown pr-5">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             <%= current_user.name %>
                         </a>
                     <div class="dropdown-menu">
                         <%= link_to 'My Profile', survival_path(current_user.id), class: 'dropdown-item' %>
+                        <% if !(current_user.isInfectedCount && current_user.isInfectedCount >=5) %>
                         <%= link_to 'My Items', item_path(current_user.id), class: 'dropdown-item' %>
+                        <% end %>
                         <%= link_to 'Update Profile', edit_survival_path(current_user.id), class: 'dropdown-item' %>
                         <%= link_to 'Logout', logout_path, method: :delete, class: "dropdown-item" %>
                     </div>
