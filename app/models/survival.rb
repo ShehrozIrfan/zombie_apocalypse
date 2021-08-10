@@ -1,4 +1,5 @@
 class Survival < ApplicationRecord
+    has_many :items
     has_one_attached :avatar
 
     before_save { email.downcase }

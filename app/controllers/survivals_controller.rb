@@ -22,8 +22,7 @@ class SurvivalsController < ApplicationController
 
     if @survival.save
       log_in @survival
-      flash[:success] = "Welcome to Zombie Apocalypse"
-      redirect_to @survival
+      redirect_to items_new_path
     else
       render 'new'
     end

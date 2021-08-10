@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'items/new'
+
   get 'sessions/new'
   get '/signup', to: 'survivals#new'
   get '/profile', to: 'survivals#show'
@@ -10,4 +12,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :survivals
+  resources :items
+
 end

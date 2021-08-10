@@ -33,7 +33,10 @@
                             <td><%= survival.gender %></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><button class="btn btn-warning btn-sm" id="btn_contaminated">Report Contamination</button></td>
+                            <td colspan="2">
+                                <%= link_to "Show Items", item_path(survival.id), class:"btn btn-secondary btn-sm" %>
+                                <button class="btn btn-warning btn-sm" id="btn_contaminated">Report Contamination</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

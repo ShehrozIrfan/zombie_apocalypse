@@ -1,0 +1,30 @@
+<% provide(:title, "Items") %>
+<!Doctype html>
+<html>
+    <head><title><%= yield(:title) %></title></head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2 class="text-center">Declare Items</h2>
+                    <%= form_with(model: @item, local: true) do |f| %>
+                        <%= render 'shared/items_error_messages' %>
+                        <%= f.label "Fiji Water" %>
+                        <%= f.number_field :fiji_water, class: "form-control mb-2"%>
+
+                        <%= f.label "Campbell Soup" %>
+                        <%= f.number_field :campbell_soup, class: "form-control mb-2"%>
+
+                        <%= f.label "First Aid Pouch" %>
+                        <%= f.number_field :first_aid_pouch, class: "form-control mb-2" %>
+
+                        <%= f.label "AK47" %>
+                        <%= f.number_field :ak, class: "form-control mb-2" %>
+
+                        <%= f.submit "Save Items", class: "btn btn-primary form-control mt-3" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
