@@ -46,6 +46,24 @@ class SurvivalsController < ApplicationController
   def index
     @survivals = Survival.all
   end
+
+  def mark_infected
+    @current_survival_id = params[:id]
+    @survival = Survival.find_by(id: @current_survival_id)
+    if @survival.isInfectedCount == nil
+      @survival.isInfectedCount = 0
+    end
+    @infected_count = @survival.isInfectedCount + 1
+    @survival.marked_infected_by = current_user.id
+    @success = false
+
+    if @survival.update_attribute(:isInfectedCount, @infected_count)
+      @success = true
+    end
+
+    render json: {data: @success}
+  end
+
   def survival_params
     params.require(:survival).permit(:avatar,:name,:email,:age,:gender,:password,:password_confirmation)
   end

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get '/survivals/mark_infected', to: 'survivals#mark_infected'
+
   resources :survivals
   resources :items
 

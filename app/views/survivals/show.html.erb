@@ -45,8 +45,12 @@
                                 <% end %>
                             </td>
                         </tr>
+                        <% if current_user.isInfectedCount != nil && current_user.isInfectedCount >= 5 %>
+                            <tr><td colspan="2" class="bg-danger text-center infected_text">You are Infected by Virus</td></tr>
+                        <% else %>
                         <tr>
                         <td colspan="2"><%= link_to 'Update Profile', edit_survival_path, class: "btn btn-warning" %></td>
+                        <% end %>
                     </tr>
                         </tbody>
                     </table>

@@ -14,7 +14,9 @@
     width: 200px;
     height: 200px;
 }
-
+.infected_text {
+    color: white;
+}
 @media(max-width: 400px) {
     body {
         font-size: 15px!important;
