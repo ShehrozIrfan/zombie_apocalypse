@@ -15,12 +15,25 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @find_user = params[:id]
-    @item = Item.find_by(survival_id: @find_user)
-    if !@item
-      flash[:danger] = "Sorry, No items found"
-      redirect_to survivals_path
+    if logged_in?
+      @find_user = params[:id]
+      @item = Item.find_by(survival_id: @find_user)
+      if !@item
+        flash[:danger] = "Sorry, No items found"
+        redirect_to survivals_path
+      end
+    else
+      flash[:warning] = "Please sign up first!"
+      redirect_to root_path
     end
+  end
+
+  def edit
+    redirect_to root_path
+  end
+
+  def index
+    redirect_to root_path
   end
 
   def items_params

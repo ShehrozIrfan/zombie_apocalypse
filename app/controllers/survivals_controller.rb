@@ -30,21 +30,36 @@ class SurvivalsController < ApplicationController
 
   def edit
     @survival = Survival.find(params[:id])
+    if logged_in? && current_user.id == @survival.id
+      @survival = Survival.find(params[:id])
+    else
+      flash[:warning] = "You are not allowed to update this survival!"
+      redirect_to root_path
+    end
   end
 
   def update
     @survival = Survival.find(params[:id])
 
-    if @survival.update(update_params)
-      flash[:success] = "Profile Updated"
-      redirect_to @survival
+    if logged_in? && current_user.id == @survival.id
+      if @survival.update(update_params)
+        flash[:success] = "Profile Updated"
+        redirect_to @survival
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to root_path
     end
   end
 
   def index
-    @survivals = Survival.all
+    if logged_in?
+      @survivals = Survival.all
+    else
+      flash[:warning] = "Please Login to see survivals"
+      redirect_to root_path
+    end
   end
 
   def mark_infected
@@ -62,19 +77,24 @@ class SurvivalsController < ApplicationController
   end
 
   def report
-    @survivors = Survival.all
+    if logged_in?
+      @survivors = Survival.all
 
-    @infected_count = 0
-    @non_infected_count = 0
-    @infected_percentage
-    @non_infected_percentage
+      @infected_count = 0
+      @non_infected_count = 0
+      @infected_percentage
+      @non_infected_percentage
 
-    @survivors.each do |s|
-      if s.isInfectedCount && s.isInfectedCount >=5
-        @infected_count = @infected_count + 1
-      else
-        @non_infected_count = @non_infected_count + 1
+      @survivors.each do |s|
+        if s.isInfectedCount && s.isInfectedCount >=5
+          @infected_count = @infected_count + 1
+        else
+          @non_infected_count = @non_infected_count + 1
+        end
       end
+    else
+      flash[:warning] = "Please Login to see report"
+      redirect_to root_path
     end
   end
 
