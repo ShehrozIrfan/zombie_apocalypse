@@ -33,7 +33,7 @@
                         </tr>
                         <tr>
                             <td class="table-dark">Infected?</td>
-                            <td><%= current_user.isInfected ? 'You are infected' : 'You are not infected' %></td>
+                            <td><%= current_user.isInfectedCount && current_user.isInfectedCount >= 5 ? 'You are infected' : 'You are not infected' %></td>
                         </tr>
                         <tr>
                             <td class="table-dark">Marked Infected</td>

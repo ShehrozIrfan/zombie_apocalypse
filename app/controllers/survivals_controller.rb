@@ -50,10 +50,7 @@ class SurvivalsController < ApplicationController
   def mark_infected
     @current_survival_id = params[:id]
     @survival = Survival.find_by(id: @current_survival_id)
-    if @survival.isInfectedCount == nil
-      @survival.isInfectedCount = 0
-    end
-    @infected_count = @survival.isInfectedCount + 1
+
     @survival.marked_infected_by = current_user.id
     @success = false
 

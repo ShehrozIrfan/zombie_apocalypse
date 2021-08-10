@@ -10,8 +10,7 @@ $(document).on('click', '#btn_contaminated', function(e) {
         success:function(data) {
             if(data){
                 alert("Successfully Marked Infected!")
-                elm.text("Already Marked Infected!");
-                elm.prop('disabled', true)
+                location.reload();
             }
         }
       })
