@@ -12,10 +12,16 @@
                 <li class="nav-item">
                     <% if logged_in? %>
                     <li><%= link_to 'Report', report_path, class: "nav-link pr-5" %></li>
-                    <li><%= link_to 'Survivals', survivals_path, class: "nav-link pr-5" %></li>
+                    <li><%= link_to 'Survivals', survivals_path, class: "nav-link pr-5 mt-" %></li>
                     <li class="nav-item dropdown pr-5">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            <%= current_user.name %>
+                            <% if current_user.avatar.attached? %>
+                                <image src="<%= (url_for(current_user.avatar)) %>" class="survival-avatar header-avatar">
+                                <%= current_user.name %>
+                            <% else %>
+                                <%= current_user.name %>
+                            <% end %>
+
                         </a>
                     <div class="dropdown-menu">
                         <%= link_to 'My Profile', survival_path(current_user.id), class: 'dropdown-item' %>
